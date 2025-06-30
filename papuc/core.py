@@ -101,7 +101,7 @@ class isoluminant_uniform_spline_colormap:
 
 		def differtial_arc(t):
 			return  np.sqrt(a_func_prime(t)**2 + b_func_prime(t)**2)
-		from scipy.integrate import simps, cumtrapz
+		from scipy.integrate import simpson, cumulative_trapezoid as simps, cumtrapz
 		#print(theta_knots)
 
 		# you only cared about arc length this a good metric, we need the integrand
