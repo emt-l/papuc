@@ -101,7 +101,7 @@ class isoluminant_uniform_spline_colormap:
 
 		def differtial_arc(t):
 			return  np.sqrt(a_func_prime(t)**2 + b_func_prime(t)**2)
-		from scipy.integrate import simpson, cumulative_trapezoid as simps, cumtrapz
+		from scipy.integrate import simpson, cumulative_trapezoid
 		#print(theta_knots)
 
 		# you only cared about arc length this a good metric, we need the integrand
@@ -109,7 +109,7 @@ class isoluminant_uniform_spline_colormap:
 
 		t_pts = self.initial_arclen_npts
 		t_knots_fine, dt = np.linspace(0, 1.0, t_pts, retstep=True)
-		cum_int  = cumtrapz(differtial_arc(t_knots_fine), dx = dt, initial = 0.0)
+		cum_int  = cumulative_trapezoid(differtial_arc(t_knots_fine), dx = dt, initial = 0.0)
 		#abs_error = abs(cum_int[-1]- arc_len_quad)
 		abs_error = abs_cumulative_error_cutoff*2
 
@@ -118,7 +118,7 @@ class isoluminant_uniform_spline_colormap:
 			cum_int_old = cum_int
 			t_pts = t_pts*2-1
 			t_knots_fine, dt = np.linspace(0, 1.0, t_pts, retstep=True)
-			cum_int  = cumtrapz(differtial_arc(t_knots_fine),dx = dt, initial = 0.0)
+			cum_int  = cumulative_trapezoid(differtial_arc(t_knots_fine),dx = dt, initial = 0.0)
 			abs_error = abs(cum_int[-1] - cum_int_old[-1])
 
 			if verbose: print('Pathlength Error %0.3e t_pts %i'%( abs_error, t_pts))
