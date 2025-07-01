@@ -13,7 +13,7 @@ Our paper exploring the concepts, the improvements over HSV, and a case study ar
 
 Clone the git repo with:
 ```
-git clone https://github.com/MTD-group/papuc.git
+git clone https://github.com/emt-l/papuc.git
 ```
 And then append your python path in your .bashrc or .bash_profile file with the path to papuc:
 ```
